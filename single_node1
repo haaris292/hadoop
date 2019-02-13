@@ -1,4 +1,9 @@
 sudo apt-get update -y
+#apt-get install openjdk-7-jdk
+#apt-get install openjdk-8-jdk 
+#########if ubuntu 18.06 then update the paths accordingly
+ssh-keygen
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 wget https://archive.apache.org/dist/hadoop/core/hadoop-2.7.3/hadoop-2.7.3.tar.gz
 tar -xvf hadoop-2.7.3.tar.gz
 sudo mv hadoop-2.7.3 /usr/local/hadoop
@@ -66,9 +71,6 @@ export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 
 #cd bin/
 hadoop namenode -format
-ssh-keygen
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 #cd sbin/
 bash start-all.sh 
-apt-get install openjdk-7-jdk
 jps
