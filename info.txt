@@ -1,0 +1,6 @@
+One common reason to disable the firewall is, as we know HDFS maintains replication in different nodes/racks but it shouldn't take any extra time for that. Setting firewall using SElinux may disturb this (or) lead to performance issue. So the general recommendation is to disable the firewall. But I believe in some cases users are still using hadoop with firewall for security reasons (if the business really demands).
+
+ 
+
+Regarding your question about security, you can follow the other recommended securities like kerberos, sentry, etc (depends upon your needs).
+
