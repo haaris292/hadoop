@@ -1,5 +1,13 @@
+https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterSetup.html
+
+
 1. Hadoop 2.6 Multi Node Cluster Setup Tutorial – Objective
-In this tutorial on Install Hadoop 2.6 Multi node cluster setup on Ubuntu, we will learn how to install a Hadoop 2.6 multi-node cluster setup with YARN. We will learn various steps for Hadoop 2.6 installing on Ubuntu to setup Hadoop multi-node cluster. We will start with platform requirements for Hadoop 2.6  Multi Node Cluster Setup on Ubuntu, prerequisites to install Hadoop on master and slave, various software required for installing Hadoop, how to start Hadoop cluster and how to stop Hadoop cluster. It will also cover how to install Hadoop CDH5 to help you in programming in Hadoop.
+In this tutorial on Install Hadoop 2.6 Multi node cluster setup on Ubuntu, 
+we will learn how to install a Hadoop 2.6 multi-node cluster setup with YARN. We will learn various steps for Hadoop 2.6 installing on Ubuntu to setup Hadoop multi-node cluster. 
+We will start with platform requirements for Hadoop 2.6  Multi Node Cluster Setup on Ubuntu, prerequisites to install Hadoop on master and slave, 
+various software required for installing Hadoop,
+how to start Hadoop cluster and how to stop Hadoop cluster. 
+It will also cover how to install Hadoop CDH5 to help you in programming in Hadoop.
 
 Hadoop 2.6 Multi Node Cluster Setup and Hadoop Installation
 Hadoop 2.6 Multi Node Cluster Setup and Hadoop Installation
