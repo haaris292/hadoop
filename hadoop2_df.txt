@@ -1,0 +1,208 @@
+1. Hadoop 2.6 Multi Node Cluster Setup Tutorial – Objective
+In this tutorial on Install Hadoop 2.6 Multi node cluster setup on Ubuntu, we will learn how to install a Hadoop 2.6 multi-node cluster setup with YARN. We will learn various steps for Hadoop 2.6 installing on Ubuntu to setup Hadoop multi-node cluster. We will start with platform requirements for Hadoop 2.6  Multi Node Cluster Setup on Ubuntu, prerequisites to install Hadoop on master and slave, various software required for installing Hadoop, how to start Hadoop cluster and how to stop Hadoop cluster. It will also cover how to install Hadoop CDH5 to help you in programming in Hadoop.
+
+Hadoop 2.6 Multi Node Cluster Setup and Hadoop Installation
+Hadoop 2.6 Multi Node Cluster Setup and Hadoop Installation
+
+2. Hadoop 2.6 Multi Node Cluster Setup
+Let us now start with steps to setup Hadoop multi-node cluster in Ubuntu. Let us first understand the recommended platform for installing Hadoop on the multi-node cluster in Ubuntu.
+
+2.1. Recommended Platform for Hadoop 2.6 Multi Node Cluster Setup
+OS: Linux is supported as a development and production platform. You can use Ubuntu 14.04 or 16.04 or later (you can also use other Linux flavors like CentOS, Redhat, etc.)
+Hadoop: Cloudera Distribution for Apache Hadoop CDH5.x (you can use Apache Hadoop 2.x)
+2.2. Install Hadoop on Master
+Let us now start with installing Hadoop on master node in the distributed mode.
+
+I. Prerequisites for Hadoop 2.6 Multi Node Cluster Setup
+Let us now start with learning the prerequisites to install Hadoop:
+a. Add Entries in hosts file
+Edit hosts file and add entries of master and slaves:
+
+sudo nano /etc/hosts
+MASTER-IP master
+SLAVE01-IP slave01
+SLAVE02-IP slave02
+
+(NOTE: In place of MASTER-IP, SLAVE01-IP, SLAVE02-IP put the value of the corresponding IP)
+b. Install Java 8 (Recommended Oracle Java)
+Install Python Software Properties
+sudo apt-get install python-software-properties
+
+Add Repository
+sudo add-apt-repository ppa:webupd8team/java
+
+Update the source list
+sudo apt-get update
+
+Install Java
+sudo apt-get install oracle-java8-installer
+c. Configure SSH
+
+Install Open SSH Server-Client
+sudo apt-get install openssh-server openssh-client
+
+Generate Key Pairs
+ssh-keygen -t rsa -P ""
+
+Configure passwordless SSH
+Copy the content of .ssh/id_rsa.pub (of master) to .ssh/authorized_keys (of all the slaves as well as master)
+
+Check by SSH to all the Slaves
+ssh slave01
+ssh slave02
+II. Install Apache Hadoop in distributed mode
+Let us now learn how to download and install Hadoop?
+a. Download Hadoop
+Below is the link to download Hadoop 2.x.
+http://archive.cloudera.com/cdh5/cdh/5/hadoop-2.5.0-cdh5.3.2.tar.gz
+b. Untar Tarball
+tar xzf hadoop-2.5.0-cdh5.3.2.tar.gz
+(Note: All the required jars, scripts, configuration files, etc. are available in HADOOP_HOME directory (hadoop-2.5.0-cdh5.3.2))
+
+III. Hadoop multi-node cluster setup Configuration
+Let us now learn how to setup Hadoop configuration while installing Hadoop?
+a. Edit .bashrc
+Edit .bashrc file located in user’s home directory and add following environment variables:
+
+export HADOOP_PREFIX="/home/ubuntu/hadoop-2.5.0-cdh5.3.2"
+export PATH=$PATH:$HADOOP_PREFIX/bin
+export PATH=$PATH:$HADOOP_PREFIX/sbin
+export HADOOP_MAPRED_HOME=${HADOOP_PREFIX}
+export HADOOP_COMMON_HOME=${HADOOP_PREFIX}
+export HADOOP_HDFS_HOME=${HADOOP_PREFIX}
+export YARN_HOME=${HADOOP_PREFIX}
+
+(Note: After above step restart the Terminal/Putty so that all the environment variables will come into effect)
+b. Check environment variables
+Check whether the environment variables added in the .bashrc file are available:
+bash
+hdfs
+
+(It should not give error: command not found)
+c. Edit hadoop-env.sh
+Edit configuration file hadoop-env.sh (located in HADOOP_HOME/etc/hadoop) and set JAVA_HOME:
+export JAVA_HOME=<path-to-the-root-of-your-Java-installation> (eg: /usr/lib/jvm/java-8-oracle/)
+d. Edit core-site.xml
+Edit configuration file core-site.xml (located in HADOOP_HOME/etc/hadoop) and add following entries:
+<configuration>
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs://master:9000</value>
+</property>
+<property>
+<name>hadoop.tmp.dir</name>
+<value>/home/ubuntu/hdata</value>
+</property>
+</configuration>
+
+Note: /home/ubuntu/hdata is a sample location; please specify a location where you have Read Write privileges
+e. Edit hdfs-site.xml
+Edit configuration file hdfs-site.xml (located in HADOOP_HOME/etc/hadoop) and add following entries:
+<configuration>
+<property>
+<name>dfs.replication</name>
+<value>2</value>
+</property>
+</configuration>
+
+f. Edit mapred-site.xml
+Edit configuration file mapred-site.xml (located in HADOOP_HOME/etc/hadoop) and add following entries:
+<configuration>
+<property>
+<name>mapreduce.framework.name</name>
+<value>yarn</value>
+</property>
+</configuration>
+
+g. Edit yarn-site.xml
+Edit configuration file mapred-site.xml (located in HADOOP_HOME/etc/hadoop) and add following entries:
+<configuration>
+<property>
+<name>yarn.nodemanager.aux-services</name>
+<value>mapreduce_shuffle</value>
+</property>
+<property>
+<name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+<value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+<property>
+<name>yarn.resourcemanager.resource-tracker.address</name>
+<value>master:8025</value>
+</property>
+<property>
+<name>yarn.resourcemanager.scheduler.address</name>
+<value>master:8030</value>
+</property>
+<property>
+<name>yarn.resourcemanager.address</name>
+<value>master:8040</value>
+</property>
+</configuration>
+
+h. Edit salves
+Edit configuration file slaves (located in HADOOP_HOME/etc/hadoop) and add following entries:
+slave01
+slave02
+
+“Hadoop is set up on Master, now setup Hadoop on all the Slaves”
+Refer this guide to learn Hadoop Features and design principles.
+2.3. Install Hadoop On Slaves
+I. Setup Prerequisites on all the slaves
+Run following steps on all the slaves:
+
+Add Entries in hosts file
+Install Java 8 (Recommended Oracle Java)
+II. Copy configured setups from master to all the slaves
+a. Create tarball of configured setup
+tar czf hadoop.tar.gz hadoop-2.5.0-cdh5.3.2
+(NOTE: Run this command on Master)
+b. Copy the configured tarball on all the slaves
+scp hadoop.tar.gz slave01:~
+(NOTE: Run this command on Master)
+scp hadoop.tar.gz slave02:~
+(NOTE: Run this command on Master)
+c. Un-tar configured Hadoop setup on all the slaves
+tar xzf hadoop.tar.gz
+(NOTE: Run this command on all the slaves)
+“Hadoop is set up on all the Slaves. Now Start the Cluster”
+
+2.4. Start the Hadoop Cluster
+Let us now learn how to start Hadoop cluster?
+
+I. Format the name node
+bin/hdfs namenode -format
+(Note: Run this command on Master)
+(NOTE: This activity should be done once when you install Hadoop, else it will delete all the data from HDFS)
+
+II. Start HDFS Services
+sbin/start-dfs.sh
+(Note: Run this command on Master)
+
+III. Start YARN Services
+sbin/start-yarn.sh
+(Note: Run this command on Master)
+
+IV. Check for Hadoop services
+a. Check daemons on Master
+
+jps</pre>
+NameNode
+ResourceManager
+
+b. Check daemons on Slaves
+jps</pre>
+DataNode
+NodeManager
+2.5. Stop The Hadoop Cluster
+Let us now see how to stop the Hadoop cluster?
+
+I. Stop YARN Services
+sbin/stop-yarn.sh
+(Note: Run this command on Master)
+
+II. Stop HDFS Services
+sbin/stop-dfs.sh
+(Note: Run this command on Master)
+This is how we do Hadoop 2.6 multi node cluster setup on Ubuntu.
+After learning how to do Hadoop 2.6 multi node cluster setup, follow this comparison guide to get the feature wise comparison between Hadoop 2.x vs Hadoop 3.x.
+If you like this tutorial on Hadoop Multinode Cluster Setup, do let us know in the comment section. Our support team is happy to help you regarding any queries in Hadoop 2.6 multi node cluster setup.
