@@ -27,3 +27,16 @@ You can restart iptables after setup is complete. If the security protocols in y
 
 Ambari checks whether iptables is running during the Ambari Server setup process. If iptables is running, a warning displays, reminding you to check that required ports are open and available. The Host Confirm step in the Cluster Install Wizard also issues a warning for each host that has iptables running.
 
+
+4
+Virtual Memory swapping can have a large impact on the performance of a Hadoop system. Because of the memory requirements of YARN containers and processes running on the nodes in a cluster, swapping process out of memory to disk can cause serious performance limitations. As such, the historical recommendations for setting the swappiness, or propensity to swap out a process, on a Hadoop system has been to disable swap altogether. With newer versions of the Linux kernel, Out Of Memory (OOM) situations can be more likely to indiscriminately kill important processes to reclaim valuable physical memory on the system with a swappiness of 0.
+
+In order to prevent the system from swapping processes too frequently, but still allow for emergency swapping (instead of killing processes), the recommendation is now to set swappiness to 1 on Linux systems. This will still allow swapping, but with the least possible aggressiveness (for comparison, the default value for swappiness is 60).
+
+To change the swappiness on a running machine, use the following command:
+
+echo "1" > /proc/sys/vm/swappiness
+To ensure the swappiness is set appropriately on reboot, use the following command:
+
+echo "vm.swappiness=1" >> /etc/sysctl.conf
+
