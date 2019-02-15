@@ -1,6 +1,17 @@
+1
+Disable selinux
 One common reason to disable the firewall is, as we know HDFS maintains replication in different nodes/racks but it shouldn't take any extra time for that. Setting firewall using SElinux may disturb this (or) lead to performance issue. So the general recommendation is to disable the firewall. But I believe in some cases users are still using hadoop with firewall for security reasons (if the business really demands).
 
  
 
 Regarding your question about security, you can follow the other recommended securities like kerberos, sentry, etc (depends upon your needs).
 
+
+
+2
+Disable Transparent Huge Pages (THP)
+Transparent Huge Pages (THP) is a Linux memory management system that reduces the overhead of Translation Lookaside Buffer (TLB) lookups on machines with large amounts of memory by using larger memory pages.
+
+However THP feature is known to perform poorly in Hadoop cluster and results in excessively high CPU utilization.
+
+Disable THP to reduce the amount of system CPU utilization on your worker nodes.  This can be done by ensuring that both proc entries are set to [never] instead of [always].
