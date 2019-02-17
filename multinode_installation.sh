@@ -19,7 +19,7 @@ sudo apt-get update
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
 sudo apt-get install -y oracle-java8-installer
 # Install Hadoop
-wget http://apache.mirrors.tds.net/hadoop/common/hadoop-2.7.2/hadoop-2.7.2.tar.gz -P ~/Downloads
+wget https://archive.apache.org/dist/hadoop/core/hadoop-2.7.3/hadoop-2.7.3.tar.gz -P ~/Downloads
 sudo tar zxvf ~/Downloads/hadoop-* -C /usr/local
 sudo mv /usr/local/hadoop-* /usr/local/hadoop
 # Set Enviornment Variable
