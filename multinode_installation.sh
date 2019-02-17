@@ -228,14 +228,14 @@ EOL'
 
 #Update mapred-site.xml
 
-cp  /usr/local/hadoop/etc/hadoop/mapred-site.xml.template mapred-site.xml
+cp  /usr/local/hadoop/etc/hadoop/mapred-site.xml.template /usr/local/hadoop/etc/hadoop/mapred-site.xml
 sudo sed -i '/<configuration>/,/<\/configuration>/d' /usr/local/hadoop/etc/hadoop/mapred-site.xml
 
 sudo su -c 'cat >>/usr/local/hadoop/etc/hadoop/mapred-site.xml <<EOL
 <configuration>
   <property>
     <name>mapreduce.jobtracker.address</name>
-    <value>rm_host_address:54311</value>
+    <value>rm:54311</value>
   </property>
   <property>
     <name>mapreduce.framework.name</name>
