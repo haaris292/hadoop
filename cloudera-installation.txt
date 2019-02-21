@@ -1,0 +1,28 @@
+
+use spot instances only for practice BIDDING for Servers Slots.
+sudo apt-get install dsh -y
+sudo nano /etc/dsh/machines.list
+scp -i whatever.pem whatever.pem ubuntu@34.23.23.23:/home/ubuntu/.ssh/
+nano .profile
+eval `ssh-agent` ssh-add /home/ubuntu/.ssh/whatever.pem
+source .profile
+ dsh -a uptime
+dsh -a sudo apt-get update
+dsh -a sudo apt-get dist-upgrade -y
+-------------------------------------------------------------------
+https://www.cloudera.com/documentation/enterprise/5-2-x/topics/installation_installation.html
+
+wget http://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin
+
+chmod u+x cloudera-manager-installer.bin 
+
+sudo ./cloudera-manager-installer.bin
+
+http://www.cloudera.com/documentation/enterprise/latest/categories/hub.html
+
+https://community.cloudera.com/
+
+http://www.cloudera.com/documentation/manager/5-1-x.html
+
+https://www.cloudera.com/documentation/enterprise/5-2-x/topics/cm_ig_ports.html
+
