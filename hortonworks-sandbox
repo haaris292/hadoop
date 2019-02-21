@@ -9,3 +9,7 @@ how to deploy
 
 configuring-yarn-capacity-scheduler-with-apache-ambari
 https://hortonworks.com/tutorial/configuring-yarn-capacity-scheduler-with-apache-ambari/
+
+
+ssh into sandbox environment
+ssh root@35.188.250.234 -p 2222
