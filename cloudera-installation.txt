@@ -1,3 +1,21 @@
+Security-Enhanced Linux (SELinux) allows you to set access control through policies. If you are having trouble deploying CDH with your policies, set SELinux in permissive mode on each host before you deploy CDH on your cluster.
+
+To set the SELinux mode, perform the following steps on each host.
+
+Check the SELinux state:
+getenforce
+If the output is either Permissive or Disabled, you can skip this task and go to Disabling the Firewall. If the output is enforcing, continue to the next step.
+Open the /etc/selinux/config file (in some systems, the /etc/sysconfig/selinux file).
+Change the line SELINUX=enforcing to SELINUX=permissive.
+Save and close the file.
+Restart your system or run the following command to disable SELinux immediately:
+setenforce 0
+After you have installed and deployed CDH, you can re-enable SELinux by changing SELINUX=permissive back to SELINUX=enforcing in /etc/selinux/config (or /etc/sysconfig/selinux), and then running the following command to immediately switch to enforcing mode:
+
+setenforce 1
+===================================================================
+
+
 
 https://www.cloudera.com/documentation/enterprise/5-14-x/topics/cm_ig_non_production.html#cmig_topic_6_5
 
