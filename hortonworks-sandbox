@@ -12,4 +12,12 @@ https://hortonworks.com/tutorial/configuring-yarn-capacity-scheduler-with-apache
 
 
 ssh into sandbox environment
-ssh root@35.188.250.234 -p 2222
+ssh root@sandbox-hdp.hortonworks.com -p 2222
+
+welcome page
+http://sandbox-hdp.hortonworks.com:1080/
+
+
+login to sandbox env and for admin user
+ambari-admin-password-reset
+
