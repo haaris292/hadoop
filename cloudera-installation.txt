@@ -1,4 +1,16 @@
 
+https://www.cloudera.com/documentation/enterprise/5-14-x/topics/cm_ig_non_production.html#cmig_topic_6_5
+
+wget https://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer
+chmod u+x cloudera-manager-installer.bin
+sudo ./cloudera-manager-installer.bin
+
+
+
+
+
+===================================================================
+
 use spot instances only for practice BIDDING for Servers Slots.
 sudo apt-get install dsh -y
 sudo nano /etc/dsh/machines.list
@@ -26,3 +38,4 @@ http://www.cloudera.com/documentation/manager/5-1-x.html
 
 https://www.cloudera.com/documentation/enterprise/5-2-x/topics/cm_ig_ports.html
 
+===================================================================
