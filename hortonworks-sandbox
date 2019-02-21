@@ -1,3 +1,6 @@
+Learning the ropes of sandbox
+https://hortonworks.com/tutorial/learning-the-ropes-of-the-hortonworks-sandbox/
+
 sandbox guide
 https://hortonworks.com/tutorial/hortonworks-sandbox-guide/section/1/
 
@@ -21,3 +24,6 @@ http://sandbox-hdp.hortonworks.com:1080/
 login to sandbox env and for admin user
 ambari-admin-password-reset
 
+==================================================================
+Getting started - hello world
+https://hortonworks.com/tutorial/hadoop-tutorial-getting-started-with-hdp/
