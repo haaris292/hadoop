@@ -4,6 +4,10 @@ One common reason to disable the firewall is, as we know HDFS maintains replicat
 
 Regarding your question about security, you can follow the other recommended securities like kerberos, sentry, etc (depends upon your needs).
 
+
+some more random text
+
+other text
 2
 Disable Transparent Huge Pages (THP)
 Transparent Huge Pages (THP) is a Linux memory management system that reduces the overhead of Translation Lookaside Buffer (TLB) lookups on machines with large amounts of memory by using larger memory pages.
